@@ -1,16 +1,15 @@
-const express = require('express')
-const cors = require('cors')
+const express = require("express");
+const cors = require("cors");
 
-require('dotenv').config()
+require("dotenv").config();
 
-const app = express()
+const app = express();
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('ho ho ho???>')
-})
+app.get("/", (req, res) => {
+  res.send("<he he he???>");
+});
 
-
-module.exports = app
+module.exports = app;
