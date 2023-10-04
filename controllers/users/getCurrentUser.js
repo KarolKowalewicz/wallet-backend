@@ -13,8 +13,7 @@ const getCurrentUser = async (req, res) => {
     const { email, name } = user;
   
     res.status(200).json({
-        email,
-        name,
+        user,
     });
   } catch (error){
       console.error(error);
