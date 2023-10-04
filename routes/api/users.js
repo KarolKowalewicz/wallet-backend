@@ -6,14 +6,13 @@ const { registerUser,
         getCurrentUser 
     } = require('../../controllers/users');
 const { authenticate } = require('../../middleware/authenticate');
-const { userValidation, validationEmail } = require('../../middleware/validationUser');
+const { validatedBodyReg, validatedBodyLog } = require('../../middleware/validationUser');
 
 const router = express.Router();
 
-router.post('/register', userValidation, registerUser);
-router.post('/login', validationEmail, loginUser);
+router.post('/register', validatedBodyReg, registerUser);
+router.post('/login', validatedBodyLog, loginUser);
 router.post('/logout', authenticate, logoutUser);
-//router.post('/refresh', authenticate, refreshToken);
 router.get('/profile', authenticate, getCurrentUser);
 
     

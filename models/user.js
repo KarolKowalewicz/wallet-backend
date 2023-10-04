@@ -15,14 +15,20 @@ const userSchema = new Schema({
     name: {
       type: String,
       required: [true, 'Name is required'],
-    },    
+    }, 
+    token: {
+      type: String,
+      default: null,
+    },  
 })
 
-userSchema.methods.validPassword = async function (password) {
-    const result = await bCrypt.compare(password, this.password)
-    console.log(result)
-    return result
-}
+userSchema.methods.setPassword = function (password) {
+  this.password = bCrypt.hashSync(password, bCrypt.genSaltSync(6));
+};
+
+userSchema.methods.validPassword = function (password) {
+  return bCrypt.compareSync(password, this.password);
+};
 
 const User = model('user', userSchema);
 

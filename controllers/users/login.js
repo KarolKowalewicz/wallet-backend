@@ -1,12 +1,17 @@
 const User = require('../../models/user');
-const { generateTokens } = require('../../helpers/token');
+
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+const secret = process.env.JWT_SECRET_KEY;
 
 const loginUser = async (req, res) => {
+  
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-  
-    if (!user || !(await user.validPassword(password))) {
+    
+    if (!user || !user.validPassword(password)) {
       return res.status(400).json({
         status: 'error',
         code: 400,
@@ -14,16 +19,13 @@ const loginUser = async (req, res) => {
         data: 'Bad request',
       });
     }
-
-  console.log(user)
   
-  const { accessToken, refreshToken } = generateTokens(user._id);
+    const payload = { id: user._id };  
+    const token = jwt.sign(payload, secret, { expiresIn: '14d' });
+    user.token = token;
+    await user.save();
    
-    res.json({
-      accessToken,
-      refreshToken,
-      user,
-    });
+    res.status(200).json({user});
 
   } catch (error){
       console.error(error);
