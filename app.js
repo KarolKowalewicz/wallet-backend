@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("<he he he???>");
+  return res.send("Server running");
 });
 
 module.exports = app;
