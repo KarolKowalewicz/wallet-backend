@@ -1,4 +1,5 @@
 const Transaction = require("../../models/transaction");
+const prepareStatistics = require("../../helperFunctions/prepareMonthlyStatistics");
 
 const getAllTransactions = async (req, res) => {
   try {
@@ -7,7 +8,11 @@ const getAllTransactions = async (req, res) => {
     response.sort((a, b) => {
       return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
     });
-    return res.status(200).json(response);
+    const statictics = prepareStatistics(response);
+
+    return res
+      .status(200)
+      .json({ statictics: statictics, transactions: response });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
