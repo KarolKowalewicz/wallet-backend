@@ -44,7 +44,7 @@ const router = express.Router();
  *                   type: integer
  *                   example: 201
  *                 user:
- *                   $ref: './models/user.js'
+ *                   $ref: '#/components/schemas/User'
  *       '409':
  *         description: Conflict. Email is already in use.
  *         content:
@@ -99,7 +99,7 @@ router.post('/register', validatedBodyReg, registerUser);
  *                   type: integer
  *                   example: 200
  *                 user:
- *                   $ref: './models/user.js'
+ *                   $ref: '#/components/schemas/User'
  *       '400':
  *         description: Bad request. Incorrect login or password.
  *         content:
@@ -153,7 +153,8 @@ router.post('/logout', authenticate, logoutUser);
  *             schema:
  *               type: object
  *               properties:
- *                 user
+ *                  user:
+ *                   $ref: '#/components/schemas/User'
  *       '401':
  *         description: Unauthorized. User not authorized.
  *       '500':
