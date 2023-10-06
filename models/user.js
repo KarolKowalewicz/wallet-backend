@@ -1,3 +1,24 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *           description: Email address of the user.
+ *         password:
+ *           type: string
+ *           description: Hashed password of the user.
+ *         name:
+ *           type: string
+ *           description: Name of the user.
+ *         token:
+ *           type: string
+ *           description: JWT token associated with the user (optional).
+ */
+
 const mongoose = require('mongoose');
 const bCrypt = require("bcryptjs");
 const { Schema, model } = mongoose;
