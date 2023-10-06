@@ -1,7 +1,6 @@
 const express = require("express");
 const Transaction = require("../../models/transaction");
-const { route } = require("./users");
-// const { authenticate } = require("../../middleware/authenticate");
+const { authenticate } = require("../../middleware/authenticate");
 const {
   getCategories,
   addTransaction,
@@ -17,11 +16,11 @@ const {
 const router = express.Router();
 
 router.get("/categories", getCategories);
-router.post("/", addTransaction);
-router.get("/", getAllTransactions);
-router.get("/:transactionId", getTransactionById);
-router.delete("/:transactionId", deleteTransaction);
-router.put("/:transactionId", updateTransaction);
-router.get("/statistics/:month", getStatisticsByMonth);
+router.post("/", authenticate, addTransaction);
+router.get("/", authenticate, getAllTransactions);
+router.get("/:transactionId", authenticate, getTransactionById);
+router.delete("/:transactionId", authenticate, deleteTransaction);
+router.put("/:transactionId", authenticate, updateTransaction);
+router.get("/statistics/:month", authenticate, getStatisticsByMonth);
 
 module.exports = router;

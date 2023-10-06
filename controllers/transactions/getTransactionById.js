@@ -2,9 +2,15 @@ const Transaction = require("../../models/transaction");
 
 const getTransactionById = async (req, res) => {
   const { transactionId } = req.params;
+  const userId = req.user._id;
 
   try {
-    const response = await Transaction.findById(transactionId);
+    // const response = await Transaction.findById(transactionId);
+    const response = await Transaction.find({
+      _id: transactionId,
+      owner: userId,
+    });
+
     console.log(response);
     if (response === null) {
       return res

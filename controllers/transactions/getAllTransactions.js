@@ -1,8 +1,9 @@
 const Transaction = require("../../models/transaction");
 
-const getAllTransactions = async (_, res) => {
+const getAllTransactions = async (req, res) => {
   try {
-    const response = await Transaction.find();
+    const userId = req.user._id;
+    const response = await Transaction.find({ owner: userId });
     response.sort((a, b) => {
       return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
     });

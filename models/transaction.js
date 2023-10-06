@@ -29,10 +29,11 @@ const transactionSchema = new Schema({
     type: Date,
     required: [true, "Date is required"],
   },
-  //   owner: {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "user",
-  //   },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+    required: [true, "Owner information is required"],
+  },
 });
 
 const Transaction = model("transaction", transactionSchema);
