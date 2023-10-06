@@ -2,14 +2,9 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const transactionSchema = new Schema({
-  //   income: {
-  //     type: Boolean,
-  //     required: [
-  //       true,
-  //       "Information if transaction is in plus or in minus is required.",
-  //     ],
-  //     // unique: true,
-  //   },
+  income: {
+    type: Boolean,
+  },
   amount: {
     type: Number,
     required: [true, "Amount is required"],
@@ -25,7 +20,6 @@ const transactionSchema = new Schema({
       "Education",
       "Leisure",
     ],
-    required: [true, "Category is required."],
   },
   comment: {
     type: String,
