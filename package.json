@@ -17,6 +17,8 @@
     "jsonwebtoken": "9.0.2",
     "mongoose": "7.5.3",
     "morgan": "1.10.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.1"
   }
 }
