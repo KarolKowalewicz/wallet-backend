@@ -1,8 +1,8 @@
-const Joi = require('joi');
+const Joi = require("joi");
 
 const schema = Joi.object({
   email: Joi.string().email().required(),
-  password: Joi.string().min(6).required(),
+  password: Joi.string().min(6).required(), //.max(12)
   name: Joi.string().min(1).max(12).required(),
 });
 
@@ -13,28 +13,27 @@ const schemaEmail = Joi.object({
 
 const validateBodyReg = (schema, res, req, next) => {
   const validationResult = schema.validate(req.body);
-  
+
   if (validationResult.error) {
-    return res.status(400).json({ message: validationResult.error.message})
+    return res.status(400).json({ message: validationResult.error.message });
   }
-  next()
+  next();
 };
 
 const validateBodyLog = (schemaEmail, res, req, next) => {
   const validationResult = schemaEmail.validate(req.body);
-  
-  if (validationResult.error) {
-    return res.status(400).json({ message: validationResult.error.message})
-  }
-  next()
-};
 
+  if (validationResult.error) {
+    return res.status(400).json({ message: validationResult.error.message });
+  }
+  next();
+};
 
 module.exports = {
   validatedBodyReg: (req, res, next) => {
-    return validateBodyReg(schema, res, req, next)
+    return validateBodyReg(schema, res, req, next);
   },
   validatedBodyLog: (req, res, next) => {
-    return validateBodyLog(schemaEmail, res, req, next)
-  }
-}
+    return validateBodyLog(schemaEmail, res, req, next);
+  },
+};
