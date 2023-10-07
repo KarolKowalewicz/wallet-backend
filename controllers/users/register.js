@@ -15,7 +15,7 @@ const registerUser = async(req, res) => {
          
     await user.save();
              
-    res.status(201).json({user})          
+    res.status(201).json({ user: { name: user.name, email: user.email } })          
   } catch (error){
         console.error(error);
         res.status(500).json({ message: 'Server Error' }) 
