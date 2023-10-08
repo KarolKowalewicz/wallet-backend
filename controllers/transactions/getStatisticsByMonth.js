@@ -1,6 +1,6 @@
 const Transaction = require("../../models/transaction");
 const convertDateForNextMonth = require("../../helperFunctions/convertDateForNextMonth");
-const prepareStatistics = require("../../helperFunctions/prepareMonthlyStatistics");
+const prepareStatistics = require("../../helperFunctions/prepareStatistics");
 
 const getStatisticsByMonth = async (req, res) => {
   const userId = req.user._id;
@@ -17,10 +17,11 @@ const getStatisticsByMonth = async (req, res) => {
       .json({ message: "There are no tranactions for this month." });
   }
   const statictics = prepareStatistics(response);
+  statictics.period = req.params.month;
 
   return res.status(200).json({
     statictics: statictics,
-    transactions: response,
+    transactions: { count: response.length, data: response },
   });
 };
 

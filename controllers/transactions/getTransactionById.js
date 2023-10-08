@@ -11,11 +11,11 @@ const getTransactionById = async (req, res) => {
       owner: userId,
     });
 
-    console.log(response);
-    if (response === null) {
-      return res
-        .status(400)
-        .json({ message: "No transaction with such id. Bad request." });
+    if (response.length === 0) {
+      return res.status(400).json({
+        message: "No transaction with such id. Bad request.",
+        code: 400,
+      });
     }
     return res.status(200).json(response);
   } catch (error) {
