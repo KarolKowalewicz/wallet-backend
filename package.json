@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon server.js"
+    "start": "node server.js",
+    "start:dev": "npx nodemon server.js"
+  },
+  "engines": {
+    "node": "18.13.0",
+    "npm": "8.19.3"
   },
   "author": "",
   "license": "ISC",
