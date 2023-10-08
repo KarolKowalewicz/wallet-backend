@@ -42,18 +42,18 @@ const router = express.Router();
  *             properties:
  *               amount:
  *                 type: integer
- *                 example: 135
+ *                 example: 283
  *               comment:
  *                 type: string
  *               date:
  *                 type: string
- *                 example: 2023-10-05
+ *                 example: 2023-10-04
  *               income:
  *                 type: boolean
  *                 example: false
  *               category:
  *                 type: string
- *                 example: Leisure
+ *                 example: Main expenses
  *     responses:
  *       '201':
  *         description: Transaction successfully added.
@@ -64,11 +64,14 @@ const router = express.Router();
  *               properties:
  *                 income:
  *                   type: boolean
- *                   example: true
- *                 amount
+ *                   example: false
+ *                 amount:
  *                   type: integer
  *                   example: 283
- *                 comment
+ *                 category:
+ *                   type: string
+ *                   example: Main expenses
+ *                 comment:
  *                   type: string
  *                 date:
  *                   type: string
