@@ -1,9 +1,43 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Transaction:
+ *       type: object
+ *       properties:
+ *         amount:
+ *           type: integer
+ *           example: 135
+ *         comment:
+ *           type: string
+ *         date:
+ *           type: string
+ *           description: Date should be ISO 8601 format, e.g. 2023-10-06
+ *         income:
+ *           type: boolean
+ *           example: false
+ *           description: True for income transactions, false for expenses.
+ *         category:
+ *           type: string
+ *           example: Leisure
+ *           description: Optional, must be used only when income is false.
+ *           enum:
+ *             - Main expenses
+ *             - Products
+ *             - Car
+ *             - Self care
+ *             - Household products
+ *             - Education
+ *             - Leisure
+ */
+
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const transactionSchema = new Schema({
   income: {
     type: Boolean,
+    required: [true, "Income information is required"],
   },
   amount: {
     type: Number,

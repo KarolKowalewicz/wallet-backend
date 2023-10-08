@@ -1,6 +1,7 @@
 const getCategories = (_, res) => {
-  return res.status(200).json({
-    categories: [
+  return res
+    .status(200)
+    .json([
       "Main expenses",
       "Products",
       "Car",
@@ -8,7 +9,6 @@ const getCategories = (_, res) => {
       "Household products",
       "Education",
       "Leisure",
-    ],
-  });
+    ]);
 };
 module.exports = { getCategories };
