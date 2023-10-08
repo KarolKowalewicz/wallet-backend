@@ -11,8 +11,7 @@ const getTransactionById = async (req, res) => {
       owner: userId,
     });
 
-    console.log(response);
-    if (response === null) {
+    if (response.length === 0) {
       return res
         .status(400)
         .json({ message: "No transaction with such id. Bad request." });

@@ -11,6 +11,11 @@ const updateTransaction = async (req, res) => {
       { $set: body },
       { new: true }
     );
+    if (response === null) {
+      return res
+        .status(400)
+        .json({ message: "No transaction with such id. Bad request." });
+    }
     return res.status(200).json({ response });
   } catch (error) {
     return res.status(500).json({
