@@ -115,6 +115,86 @@ const router = express.Router();
 
 router.post("/", authenticate, validatedBodyPost, addTransaction);
 
+/**
+ * @swagger
+ * /api/transactions:
+ *   get:
+ *     summary: Get all transactions belonging to the user.
+ *     description:  Get all transactions belonging to the user.
+ *     responses:
+ *       '201':
+ *         description: Transactions successfully sent to client.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statistics:
+ *                   type: object
+ *                   properties:
+ *                     incomeSum:
+ *                       type: integer
+ *                     expenseSum:
+ *                       type: integer
+ *                     balance:
+ *                       type: integer
+ *                     expenseStatistics:
+ *                       type: object
+ *                       properties:
+ *                         Main expenses:
+ *                           type: integer
+ *                         Products:
+ *                           type: integer
+ *                         Car:
+ *                           type: integer
+ *                         Self care:
+ *                           type: integer
+ *                         Household products:
+ *                           type: integer
+ *                         Education:
+ *                           type: integer
+ *                         Leisure:
+ *                           type: integer
+ *                       period:
+ *                         type: string
+ *                         example: allTime
+ *                 transactions:
+ *                   type: object
+ *                   properties:
+ *                     count:
+ *                       type: integer
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                          type: object
+ *        '401':
+ *         description: Unauthorized. User not authorized.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 code:
+ *                   type: integer
+ *                   example: 401
+ *                 message:
+ *                   type: string
+ *                   example: Not authorized
+ *       '500':
+ *         description: Internal Server Error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Server error.
+ */
+
 router.get("/", authenticate, getAllTransactions);
 /**
  * @swagger
