@@ -12,9 +12,10 @@ const getTransactionById = async (req, res) => {
     });
 
     if (response.length === 0) {
-      return res
-        .status(400)
-        .json({ message: "No transaction with such id. Bad request." });
+      return res.status(400).json({
+        message: "No transaction with such id. Bad request.",
+        code: 400,
+      });
     }
     return res.status(200).json(response);
   } catch (error) {

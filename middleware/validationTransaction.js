@@ -38,7 +38,9 @@ const validateBodyPost = (schema, res, req, next) => {
   const validationResult = schema.validate(req.body);
 
   if (validationResult.error) {
-    return res.status(400).json({ message: validationResult.error.message });
+    return res
+      .status(400)
+      .json({ message: validationResult.error.message, code: 400 });
   }
   next();
 };
@@ -47,7 +49,9 @@ const validateBodyPut = (schema, res, req, next) => {
   const validationResult = schema.validate(req.body);
 
   if (validationResult.error) {
-    return res.status(400).json({ message: validationResult.error.message });
+    return res
+      .status(400)
+      .json({ message: validationResult.error.message, code: 400 });
   }
   next();
 };

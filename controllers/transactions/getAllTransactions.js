@@ -7,19 +7,22 @@ const getAllTransactions = async (req, res) => {
     const response = await Transaction.find({ owner: userId });
 
     if (response.length === 0) {
-      return res.status(400).json({ message: "There are no transactions." });
+      return res
+        .status(400)
+        .json({
+          message: "There are no transactions. Bad request.",
+          code: 400,
+        });
     }
     response.sort((a, b) => {
       return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
     });
     const statictics = prepareStatistics(response);
     statictics.period = "allTime";
-    return res
-      .status(200)
-      .json({
-        statictics: statictics,
-        transactions: { count: response.length, data: response },
-      });
+    return res.status(200).json({
+      statictics: statictics,
+      transactions: { count: response.length, data: response },
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
