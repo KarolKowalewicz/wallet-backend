@@ -178,9 +178,9 @@ router.post("/", authenticate, validatedBodyPost, addTransaction);
  *                         Leisure:
  *                           type: integer
  *                           example: 2250
- *                       period:
- *                         type: string
- *                         example: allTime
+ *                     period:
+ *                       type: string
+ *                       example: allTime
  *                 transactions:
  *                   type: object
  *                   properties:
@@ -614,6 +614,9 @@ router.put(
  *                       period:
  *                         type: string
  *                         example: allTime
+ *                     period:
+ *                       type: string
+ *                       example: 2023-10
  *                 transactions:
  *                   type: object
  *                   properties:
