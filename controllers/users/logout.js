@@ -6,11 +6,7 @@ const logoutUser = async (req, res) => {
         const user = await User.findById(userId);
     
         if (!user) {
-            return res.status(401).json({
-                status: 'error',
-                code: 401,
-                message: "Not authorized",
-            });
+            return res.status(401).json({ message: "Not authorized" });
         }
     
         user.token = null;
