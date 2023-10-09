@@ -1,12 +1,16 @@
-const express = require('express');
+const express = require("express");
 
-const { registerUser,
-        loginUser,
-        logoutUser, 
-        getCurrentUser 
-    } = require('../../controllers/users');
-const { authenticate } = require('../../middleware/authenticate');
-const { validatedBodyReg, validatedBodyLog } = require('../../middleware/validationUser');
+const {
+  registerUser,
+  loginUser,
+  logoutUser,
+  getCurrentUser,
+} = require("../../controllers/users");
+const { authenticate } = require("../../middleware/authenticate");
+const {
+  validatedBodyReg,
+  validatedBodyLog,
+} = require("../../middleware/validationUser");
 
 const router = express.Router();
 
@@ -37,14 +41,13 @@ const router = express.Router();
  *             schema:
  *               type: object
  *               properties:
- *                 status:
- *                   type: string
- *                   enum: [success]
- *                 code:
- *                   type: integer
- *                   example: 201
  *                 user:
- *                   $ref: '#/components/schemas/User'
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                     email:
+ *                       type: string
  *       '409':
  *         description: Conflict. Email is already in use.
  *         content:
@@ -64,8 +67,8 @@ const router = express.Router();
  *                 message:
  *                   type: string
  */
- 
-router.post('/register', validatedBodyReg, registerUser);
+
+router.post("/register", validatedBodyReg, registerUser);
 
 /**
  * @swagger
@@ -86,20 +89,21 @@ router.post('/register', validatedBodyReg, registerUser);
  *                 type: string
  *     responses:
  *       '200':
- *         description: User successfully logged in.
+ *         description: User successfully registered.
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 status:
- *                   type: string
- *                   enum: [success]
- *                 code:
- *                   type: integer
- *                   example: 200
  *                 user:
- *                   $ref: '#/components/schemas/User'
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     token:
+ *                       type: string
  *       '400':
  *         description: Bad request. Incorrect login or password.
  *         content:
@@ -119,8 +123,7 @@ router.post('/register', validatedBodyReg, registerUser);
  *                   type: string
  */
 
-router.post('/login', validatedBodyLog, loginUser);
-
+router.post("/login", validatedBodyLog, loginUser);
 
 /**
  * @swagger
@@ -136,8 +139,7 @@ router.post('/login', validatedBodyLog, loginUser);
  *       '500':
  *         description: Internal Server Error.
  */
-router.post('/logout', authenticate, logoutUser);
-
+router.post("/logout", authenticate, logoutUser);
 
 /**
  * @swagger
@@ -146,21 +148,27 @@ router.post('/logout', authenticate, logoutUser);
  *     summary: Get current user profile
  *     description: Retrieve the profile of the currently authenticated user.
  *     responses:
- *       '200':
- *         description: Current user profile successfully retrieved.
+ *       '201':
+ *         description: User successfully registered.
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                  user:
- *                   $ref: '#/components/schemas/User'
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     token:
+ *                       type: string
  *       '401':
  *         description: Unauthorized. User not authorized.
  *       '500':
  *         description: Internal Server Error.
  */
-router.get('/current', authenticate, getCurrentUser);
+router.get("/current", authenticate, getCurrentUser);
 
-    
-module.exports = router;    
+module.exports = router;
