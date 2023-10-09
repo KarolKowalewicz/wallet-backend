@@ -191,19 +191,6 @@ router.post("/", authenticate, validatedBodyPost, addTransaction);
  *                       type: array
  *                       items:
  *                          type: object
- *       '400':
- *         description: There are no transactions.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: There are no transactions. Bad request.
- *                 code:
- *                   type: integer
- *                   example: 400
  *       '401':
  *         description: Unauthorized. User not authorized.
  *         content:
@@ -627,19 +614,6 @@ router.put(
  *                       type: array
  *                       items:
  *                          type: object
- *       '400':
- *         description: There are no transactions.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: There are no transactions. Bad request.
- *                 code:
- *                   type: integer
- *                   example: 400
  *       '401':
  *         description: Unauthorized. User not authorized.
  *         content:
