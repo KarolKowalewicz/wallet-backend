@@ -11,18 +11,15 @@ const getStatisticsByMonth = async (req, res) => {
     date: { $gte: searchedMonth, $lt: nextMonth },
     owner: userId,
   });
-  if (response.length === 0) {
-    return res
-      .status(400)
-      .json({ message: "There are no tranactions for this month." });
-  }
-  const statictics = prepareStatistics(response);
-  statictics.period = req.params.month;
+  // if (response.length === 0) {
+  //   return res
+  //     .status(400)
+  //     .json({ message: "There are no tranactions for this month." });
+  // }
+  const statistics = prepareStatistics(response);
+  statistics.statistics.period = req.params.month;
 
-  return res.status(200).json({
-    statictics: statictics,
-    transactions: { count: response.length, data: response },
-  });
+  return res.status(200).json(statistics);
 };
 
 module.exports = { getStatisticsByMonth };
