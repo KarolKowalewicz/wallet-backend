@@ -6,12 +6,12 @@ const getAllTransactions = async (req, res) => {
     const userId = req.user._id;
     const response = await Transaction.find({ owner: userId });
 
-    // if (response.length === 0) {
-    //   return res.status(400).json({
-    //     message: "There are no transactions. Bad request.",
-    //     code: 400,
-    //   });
-    // }
+    if (response.length === 0) {
+      return res.status(400).json({
+        message: "There are no transactions. Bad request.",
+        code: 400,
+      });
+    }
     const statistics = prepareStatistics(response);
     statistics.statistics.period = "allTime";
 
