@@ -11,29 +11,30 @@ const prepareStatistics = (arrayOfAllTransactions) => {
     Leisure: 0,
   };
 
-  const incomeArray = arrayOfAllTransactions.filter(
-    (element) => element.income
-  );
-  incomeArray.forEach((element) => {
-    incomeSum += element.amount;
+  arrayOfAllTransactions.sort((a, b) => {
+    return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
   });
 
-  const expenseArray = arrayOfAllTransactions.filter(
-    (element) => element.category
-  );
-
-  expenseArray.forEach((transaction) => {
-    expenseStatistics[transaction.category] += transaction.amount;
-    expenseSum += transaction.amount;
+  arrayOfAllTransactions.forEach((element) => {
+    if (element.income) {
+      incomeSum += element.amount;
+    }
+    if (!element.income) {
+      expenseStatistics[element.category] += element.amount;
+      expenseSum += element.amount;
+    }
   });
 
   const balance = incomeSum - expenseSum;
-
+  const transactionCount = arrayOfAllTransactions.length;
   const result = {
-    incomeSum: incomeSum,
-    expenseSum: expenseSum,
-    balance: balance,
-    expenseStatistics: expenseStatistics,
+    statistics: {
+      incomeSum: incomeSum,
+      expenseSum: expenseSum,
+      balance: balance,
+      expenseStatistics: expenseStatistics,
+    },
+    transactions: { count: transactionCount, data: arrayOfAllTransactions },
   };
   return result;
 };
