@@ -178,6 +178,15 @@ router.post("/", authenticate, validatedBodyPost, addTransaction);
  *                         Leisure:
  *                           type: integer
  *                           example: 2250
+ *                         Child care:
+ *                           type: integer
+ *                           example: 0
+ *                         Other expenses:
+ *                           type: integer
+ *                           example: 0
+ *                         Entertainment:
+ *                           type: integer
+ *                           example: 0
  *                     period:
  *                       type: string
  *                       example: allTime
@@ -235,7 +244,7 @@ router.get("/", authenticate, getAllTransactions);
  *               type: array
  *               items:
  *                 type: string
- *               example: ["Main expenses", "Products", "Car", "Self care", "Household products", "Education", "Leisure"]
+ *               example: ["Main expenses", "Products", "Car", "Self care", "Child care", "Household products", "Education", "Leisure", "Other expenses", "Entertainment"]
  *
  *       '500':
  *         description: Server error.
@@ -598,6 +607,15 @@ router.put(
  *                         Leisure:
  *                           type: integer
  *                           example: 2250
+ *                         Child care:
+ *                           type: integer
+ *                           example: 0
+ *                         Other expenses:
+ *                           type: integer
+ *                           example: 0
+ *                         Entertainment:
+ *                           type: integer
+ *                           example: 0
  *                       period:
  *                         type: string
  *                         example: allTime

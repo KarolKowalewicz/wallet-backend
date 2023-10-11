@@ -26,9 +26,12 @@
  *             - Products
  *             - Car
  *             - Self care
+ *             - Child care
  *             - Household products
  *             - Education
  *             - Leisure
+ *             - Other expenses
+ *             - Entertainment
  */
 
 const mongoose = require("mongoose");
@@ -50,9 +53,12 @@ const transactionSchema = new Schema({
       "Products",
       "Car",
       "Self care",
+      "Child care",
       "Household products",
       "Education",
       "Leisure",
+      "Other expenses",
+      "Entertainment",
     ],
   },
   comment: {

@@ -6,9 +6,12 @@ const getCategories = (_, res) => {
       "Products",
       "Car",
       "Self care",
+      "Child care",
       "Household products",
       "Education",
       "Leisure",
+      "Other expenses",
+      "Entertainment",
     ]);
 };
 module.exports = { getCategories };
