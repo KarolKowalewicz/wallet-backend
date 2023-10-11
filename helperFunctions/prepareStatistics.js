@@ -6,9 +6,12 @@ const prepareStatistics = (arrayOfAllTransactions) => {
     Products: 0,
     Car: 0,
     "Self care": 0,
+    "Child care": 0,
     "Household products": 0,
     Education: 0,
     Leisure: 0,
+    "Other expenses": 0,
+    Entertainment: 0,
   };
 
   arrayOfAllTransactions.sort((a, b) => {
@@ -29,10 +32,10 @@ const prepareStatistics = (arrayOfAllTransactions) => {
   const transactionCount = arrayOfAllTransactions.length;
   const result = {
     statistics: {
-      incomeSum: incomeSum,
-      expenseSum: expenseSum,
-      balance: balance,
-      expenseStatistics: expenseStatistics,
+      incomeSum,
+      expenseSum,
+      balance,
+      expenseStatistics,
     },
     transactions: { count: transactionCount, data: arrayOfAllTransactions },
   };

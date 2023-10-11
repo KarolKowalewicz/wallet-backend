@@ -8,9 +8,12 @@ const schemaPostTransaction = Joi.object({
       "Products",
       "Car",
       "Self care",
+      "Child care",
       "Household products",
       "Education",
-      "Leisure"
+      "Leisure",
+      "Other expenses",
+      "Entertainment"
     )
     .optional(),
   income: Joi.boolean().optional().required(),
@@ -25,9 +28,12 @@ const schemaPutTransaction = Joi.object({
     "Products",
     "Car",
     "Self care",
+    "Child care",
     "Household products",
     "Education",
-    "Leisure"
+    "Leisure",
+    "Other expenses",
+    "Entertainment"
   ),
   income: Joi.boolean(),
   comment: Joi.string(),
