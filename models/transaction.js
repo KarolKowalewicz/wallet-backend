@@ -63,7 +63,6 @@ const transactionSchema = new Schema({
   },
   comment: {
     type: String,
-    required: [true, "Comment is required"],
   },
   date: {
     type: Date,

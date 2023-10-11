@@ -17,7 +17,7 @@ const schemaPostTransaction = Joi.object({
     )
     .optional(),
   income: Joi.boolean().optional().required(),
-  comment: Joi.string().required(),
+  comment: Joi.string(),
   date: Joi.string().isoDate().required(),
 });
 
